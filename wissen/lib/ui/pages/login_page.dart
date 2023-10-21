@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:wissen/ui/pages/cliente/selecao_servico_page.dart';
+import 'package:wissen/ui/widgets/utils.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -50,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
                   padding: const EdgeInsets.all(16.0),
                   child: ElevatedButton(
                     onPressed: _realizarLogin,
-                    child: const Text('Entrar'),
+                    child: const Text('Entrar', style: TextStyle(fontSize: 20)),
                   ),
                 ),
               ],
@@ -63,5 +65,6 @@ class _LoginPageState extends State<LoginPage> {
 
   void _realizarLogin() {
     // realiza o login
+    showPage(context, SelecaoServicosPage());
   }
 }

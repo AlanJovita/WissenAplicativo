@@ -1,7 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:wissen/ui/pages/cliente/selecao_servico_page.dart';
 import 'package:wissen/ui/widgets/utils.dart';
-import 'dart:convert' as convert;
+import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class LoginPage extends StatefulWidget {
@@ -59,6 +61,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   SizedBox(height: 10),
                   TextFormField(
+                    obscureText: true,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Senha',
@@ -96,20 +99,23 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _realizarLogin(String login, String senha) async {
-    var url = Uri.https('urlBase', '/login/$login/senha/$senha');
+    final Uri url = Uri.parse(
+        'http://api.wissen.premiodelivery.com.br/autenticacao/$login/$senha');
+    final response = await http.get(url);
 
-    var response = await http.get(url);
     if (response.statusCode == 200) {
-      var jsonResponse =
-          convert.jsonDecode(response.body) as Map<String, dynamic>;
-      var autenticado = jsonResponse['autenticacao'];
-      if (autenticado == true) {
+      var dados = jsonDecode(response.body);
+      if (dados == "{status:True}") {
         showPage(context, SelecaoServicosPage());
       } else {
-        print('Login ou senha inválidos');
+        var snackBar = SnackBar(
+            content: Text(
+              'Usuário ou senha inválidos',
+              style: TextStyle(color: Colors.white),
+            ),
+            backgroundColor: Colors.red);
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }
-    } else {
-      print('Request failed with status: ${response.statusCode}.');
     }
   }
 }

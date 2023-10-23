@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:wissen/server/models/usuario.dart';
 import 'package:wissen/ui/pages/cliente/selecao_servico_page.dart';
 import 'package:wissen/ui/widgets/utils.dart';
 import 'dart:convert';
@@ -118,9 +119,4 @@ class _LoginPageState extends State<LoginPage> {
       }
     }
   }
-}
-
-class Usuario {
-  late String login;
-  late String senha;
 }

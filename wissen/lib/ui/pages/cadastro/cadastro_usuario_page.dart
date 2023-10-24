@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:wissen/server/models/usuario.dart';
 
 class CadastroUsuarioPage extends StatefulWidget {
@@ -11,6 +14,19 @@ class CadastroUsuarioPage extends StatefulWidget {
 class _CadastroUsuarioPageState extends State<CadastroUsuarioPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   var usuario = Usuario();
+// A imagem selecionada
+  XFile? _image;
+
+  // Abre a galeria
+  void _openGallery() async {
+    // Abra a galeria e selecione uma imagem
+    _image = await ImagePicker().pickImage(source: ImageSource.gallery);
+
+    // Se uma imagem foi selecionada, exiba-a
+    if (_image != null) {
+      setState(() {});
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,19 +42,27 @@ class _CadastroUsuarioPageState extends State<CadastroUsuarioPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: const CircleAvatar(
-                    radius: 80,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Icon(Icons.camera_alt, size: 50),
-                        ),
-                        Text("Adicionar Foto"),
-                      ],
+                Center(
+                  child: GestureDetector(
+                    onTap: () {
+                      _openGallery();
+                    },
+                    child: CircleAvatar(
+                      backgroundImage:
+                          _image != null ? FileImage(File(_image!.path)) : null,
+                      radius: 80,
+                      child: _image != null
+                          ? Container()
+                          : const Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Icon(Icons.add_a_photo, size: 40),
+                                ),
+                                Text("Adicionar Foto"),
+                              ],
+                            ),
                     ),
                   ),
                 ),

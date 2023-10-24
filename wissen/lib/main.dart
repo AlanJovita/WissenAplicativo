@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:json_theme/json_theme.dart';
-import 'package:wissen/ui/pages/cadastro/cadastro_usuario_page.dart';
 import 'package:wissen/ui/pages/login_page.dart';
 
 void main() async {
@@ -24,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: theme,
       debugShowCheckedModeBanner: false,
       title: 'Wissen App',
-      home: CadastroUsuarioPage(),
+      home: LoginPage(),
     );
   }
 }

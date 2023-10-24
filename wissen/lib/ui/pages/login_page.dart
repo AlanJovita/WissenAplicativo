@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:wissen/server/models/usuario.dart';
+import 'package:wissen/ui/pages/cadastro/cadastro_usuario_page.dart';
 import 'package:wissen/ui/pages/cliente/selecao_servico_page.dart';
 import 'package:wissen/ui/widgets/utils.dart';
 import 'dart:convert';
@@ -90,6 +91,11 @@ class _LoginPageState extends State<LoginPage> {
                           const Text('Entrar', style: TextStyle(fontSize: 20)),
                     ),
                   ),
+                  TextButton(
+                      onPressed: () {
+                        showPage(context, CadastroUsuarioPage());
+                      },
+                      child: Text("Cadastre-se")),
                 ],
               ),
             ),

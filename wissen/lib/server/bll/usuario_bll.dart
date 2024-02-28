@@ -7,14 +7,18 @@ class UsuarioBLL {
     final databases = Databases(client);
 
     try {
-      await databases.listDocuments(
+      var response = await databases.listDocuments(
         databaseId: databaseId,
         collectionId: collectionIdUsuario,
         queries: [
-          Query.equal('login', 'andre'),
-          Query.equal('senha', '123'),
+          Query.equal('login', login),
+          Query.equal('senha', senha),
         ],
       );
+      // validar response
+      if (response.documents.length == 0) {
+        return false;
+      }
       return true;
     } on Exception {
       return false;

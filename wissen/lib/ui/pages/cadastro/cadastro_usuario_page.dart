@@ -30,75 +30,63 @@ class _CadastroUsuarioPageState extends State<CadastroUsuarioPage> {
 
   @override
   Widget build(BuildContext context) {
+    var usuario = Usuario();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Cadastro de Prestador'),
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30.0),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Center(
-                  child: GestureDetector(
-                    onTap: () {
-                      _openGallery();
-                    },
-                    child: CircleAvatar(
-                      backgroundImage:
-                          _image != null ? FileImage(File(_image!.path)) : null,
-                      radius: 80,
-                      child: _image != null
-                          ? Container()
-                          : const Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Icon(Icons.add_a_photo, size: 40),
-                                ),
-                                Text("Adicionar Foto"),
-                              ],
-                            ),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30.0),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  rjTextBox("Nome Completo", (value) {
+                    usuario.nome = value;
+                    return null;
+                  }),
+                  rjTextBox("E-mail", (value) {
+                    usuario.email = value;
+                    return null;
+                  }),
+                  rjTextBox("Telefone", (value) {
+                    usuario.telefone = value;
+                    return null;
+                  }),
+                  rjTextBox("Endereço", (value) {
+                    usuario.endereco = value;
+                    return null;
+                  }),
+                  rjTextBox("Cidade", (value) {
+                    usuario.cidade = value;
+                    return null;
+                  }),
+                  rjTextBox("Estado", (value) {
+                    usuario.estado = value;
+                    return null;
+                  }),
+                  rjTextBox("Bairro", (value) {
+                    usuario.bairro = value;
+                    return null;
+                  }),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          var usuario = Usuario();
+                          usuario.nome = "Nome";
+                        }
+                      },
+                      child:
+                          const Text('Salvar', style: TextStyle(fontSize: 20)),
                     ),
                   ),
-                ),
-                rjTextBox("Nome Completo", (value) {
-                  return null;
-                }),
-                rjTextBox("Endereço", (value) {
-                  return null;
-                }),
-                rjTextBox("Bairro", (value) {
-                  return null;
-                }),
-                rjTextBox("Cidade", (value) {
-                  return null;
-                }),
-                rjTextBox("Estado", (value) {
-                  return null;
-                }),
-                rjTextBox("Telefone", (value) {
-                  return null;
-                }),
-                rjTextBox("E-mail", (value) {
-                  return null;
-                }),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        //_salvarDados
-                      }
-                    },
-                    child: const Text('Salvar', style: TextStyle(fontSize: 20)),
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

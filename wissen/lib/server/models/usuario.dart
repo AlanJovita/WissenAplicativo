@@ -8,8 +8,9 @@ class Usuario {
   late String cidade;
   late String estado;
   late String cep;
+  late String bairro;
   late String foto;
-  late String tipo;
+  late String tipoUsuario;
   late String status;
   late DateTime dataNascimento;
   late DateTime dataCadastro;

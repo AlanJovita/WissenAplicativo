@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wissen/ui/pages/cliente/selecao_prestador_page.dart';
 import 'package:wissen/ui/widgets/utils.dart';
 
+// ignore: must_be_immutable
 class AnotacoesServicoPage extends StatefulWidget {
   String nomeServico;
   AnotacoesServicoPage(this.nomeServico, {super.key});
@@ -35,7 +36,7 @@ class _AnotacoesServicoPageState extends State<AnotacoesServicoPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                Container(
+                const SizedBox(
                   height: 200,
                   child: Center(
                     child: Text(
@@ -44,9 +45,9 @@ class _AnotacoesServicoPageState extends State<AnotacoesServicoPage> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 300,
-                  child: const TextField(
+                  child: TextField(
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Anotações',
@@ -58,7 +59,7 @@ class _AnotacoesServicoPageState extends State<AnotacoesServicoPage> {
                   padding: const EdgeInsets.all(16.0),
                   child: ElevatedButton(
                     onPressed: () {
-                      showPage(context, SelecaoPrestadorPage());
+                      showPage(context, const SelecaoPrestadorPage());
                     },
                     child: const Text('Buscar Técnico',
                         style: TextStyle(fontSize: 20)),

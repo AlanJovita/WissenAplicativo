@@ -6,6 +6,8 @@ import 'package:wissen/ui/pages/cliente/selecao_servico_page.dart';
 import 'package:wissen/ui/widgets/utils.dart';
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
@@ -42,9 +44,9 @@ class _LoginPageState extends State<LoginPage> {
                     backgroundImage:
                         AssetImage('assets/images/wissen_logo.jpeg'),
                   ),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                   TextFormField(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Login',
                     ),
@@ -58,10 +60,10 @@ class _LoginPageState extends State<LoginPage> {
                       usuario.login = value!;
                     },
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   TextFormField(
                     obscureText: true,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Senha',
                     ),
@@ -90,9 +92,9 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   TextButton(
                       onPressed: () {
-                        showPage(context, CadastroUsuarioPage());
+                        showPage(context, const CadastroUsuarioPage());
                       },
-                      child: Text("Cadastre-se")),
+                      child: const Text("Cadastre-se")),
                 ],
               ),
             ),
@@ -105,6 +107,7 @@ class _LoginPageState extends State<LoginPage> {
   void _realizarLogin(String login, String senha) async {
     var loginOk = await UsuarioBLL().validarLogin(login, senha);
     if (loginOk) {
+      // ignore: use_build_context_synchronously
       showPage(context, const SelecaoServicosPage());
     } else {
       var snackBar = const SnackBar(
@@ -113,6 +116,7 @@ class _LoginPageState extends State<LoginPage> {
             style: TextStyle(color: Colors.white),
           ),
           backgroundColor: Colors.red);
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
   }

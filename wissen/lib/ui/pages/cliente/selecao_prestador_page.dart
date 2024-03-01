@@ -50,7 +50,7 @@ class _SelecaoPrestadorPageState extends State<SelecaoPrestadorPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Seleção de Prestadores'),
+        title: const Text('Seleção de Prestadores'),
       ),
       body: ListView.builder(
           itemCount: prestadoresServico.length,

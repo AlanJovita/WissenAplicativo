@@ -10,7 +10,7 @@ class SelecaoServicosPage extends StatefulWidget {
 }
 
 class _SelecaoServicosPageState extends State<SelecaoServicosPage> {
-  List<Servico> _servicos = [
+  final List<Servico> _servicos = [
     Servico(
       nome: 'Elétrica',
       descricao: 'Instalação de tomadas, interruptores, luminárias, etc.',
@@ -49,7 +49,7 @@ class _SelecaoServicosPageState extends State<SelecaoServicosPage> {
             },
             children: _servicos.map<ExpansionPanel>((Servico servico) {
               return ExpansionPanel(
-                backgroundColor: Color.fromARGB(255, 50, 50, 50),
+                backgroundColor: const Color.fromARGB(255, 50, 50, 50),
                 headerBuilder: (BuildContext context, bool isExpanded) {
                   return GestureDetector(
                     onTap: () {

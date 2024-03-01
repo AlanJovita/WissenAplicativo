@@ -8,6 +8,7 @@ class CardWidget extends StatelessWidget {
   final String urlImagem;
 
   const CardWidget({
+    super.key,
     required this.nome,
     required this.distancia,
     required this.preco,
@@ -42,11 +43,11 @@ class CardWidget extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(18.0),
-                    child: Container(
+                    child: SizedBox(
                       height: 50,
                       child: Text(
                         nome,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 25,
                           fontWeight: FontWeight.w600,
                         ),
@@ -55,25 +56,25 @@ class CardWidget extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.location_on,
                         color: Colors.grey,
                       ),
                       Text(
-                        '${distancia} km',
-                        style: TextStyle(
+                        '$distancia km',
+                        style: const TextStyle(
                           fontSize: 20,
                           color: Colors.green,
                         ),
                       ),
-                      SizedBox(width: 10),
-                      Icon(
+                      const SizedBox(width: 10),
+                      const Icon(
                         Icons.money,
                         color: Colors.red,
                       ),
                       Text(
                         'R\$ ${preco.toStringAsFixed(2)}',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 20,
                           color: Colors.grey,
                         ),

@@ -15,8 +15,7 @@ class UsuarioBLL {
           Query.equal('senha', senha),
         ],
       );
-      // validar response
-      if (response.documents.length == 0) {
+      if (response.documents.isEmpty) {
         return false;
       }
       return true;

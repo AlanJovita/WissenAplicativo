@@ -32,7 +32,7 @@ class _CadastroUsuarioPageState extends State<CadastroUsuarioPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Cadastro de Prestador'),
+        title: const Text('Cadastro de Prestador'),
       ),
       body: Center(
         child: Padding(
@@ -111,7 +111,7 @@ class _CadastroUsuarioPageState extends State<CadastroUsuarioPage> {
       padding: const EdgeInsets.all(8.0),
       child: TextFormField(
         decoration: InputDecoration(
-          border: OutlineInputBorder(),
+          border: const OutlineInputBorder(),
           labelText: labelText,
         ),
         validator: validator,

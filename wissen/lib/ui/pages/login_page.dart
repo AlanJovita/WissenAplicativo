@@ -19,83 +19,86 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Login')),
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color.fromARGB(255, 70, 70, 70),
-              Color.fromARGB(255, 30, 30, 30),
-            ],
+      body: Expanded(
+        child: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color.fromARGB(255, 70, 70, 70),
+                Color.fromARGB(255, 30, 30, 30),
+              ],
+            ),
           ),
-        ),
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25.0),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  const CircleAvatar(
-                    radius: 100,
-                    backgroundImage:
-                        AssetImage('assets/images/wissen_logo.jpeg'),
-                  ),
-                  const SizedBox(height: 30),
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Login',
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25.0),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    const SizedBox(height: 20),
+                    const CircleAvatar(
+                      radius: 70,
+                      backgroundImage:
+                          AssetImage('assets/images/wissen_logo.jpeg'),
                     ),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Please enter your login';
-                      }
-                      return null;
-                    },
-                    onSaved: (value) {
-                      usuario.login = value!;
-                    },
-                  ),
-                  const SizedBox(height: 10),
-                  TextFormField(
-                    obscureText: true,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Senha',
-                    ),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Please enter your password';
-                      }
-                      return null;
-                    },
-                    onSaved: (value) {
-                      usuario.senha = value!;
-                    },
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          _formKey.currentState!.save(); // Save the form data
-                          _realizarLogin(usuario.login, usuario.senha);
+                    const SizedBox(height: 10),
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Login',
+                      ),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Please enter your login';
                         }
+                        return null;
                       },
-                      child:
-                          const Text('Entrar', style: TextStyle(fontSize: 20)),
+                      onSaved: (value) {
+                        usuario.login = value!;
+                      },
                     ),
-                  ),
-                  TextButton(
-                      onPressed: () {
-                        showPage(context, const CadastroUsuarioPage());
+                    const SizedBox(height: 10),
+                    TextFormField(
+                      obscureText: true,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Senha',
+                      ),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Please enter your password';
+                        }
+                        return null;
                       },
-                      child: const Text("Cadastre-se")),
-                ],
+                      onSaved: (value) {
+                        usuario.senha = value!;
+                      },
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 4),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            _formKey.currentState!.save(); // Save the form data
+                            _realizarLogin(usuario.login, usuario.senha);
+                          }
+                        },
+                        child: const Text('Entrar',
+                            style: TextStyle(fontSize: 20)),
+                      ),
+                    ),
+                    TextButton(
+                        onPressed: () {
+                          showPage(context, const CadastroUsuarioPage());
+                        },
+                        child: const Text("Cadastre-se")),
+                  ],
+                ),
               ),
             ),
           ),

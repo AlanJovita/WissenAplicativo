@@ -1,7 +1,6 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:wissen/server/bll/usuario_bll.dart';
 import 'package:wissen/server/models/usuario.dart';
 
 class CadastroUsuarioPage extends StatefulWidget {
@@ -52,12 +51,20 @@ class _CadastroUsuarioPageState extends State<CadastroUsuarioPage> {
                     usuario.email = value;
                     return null;
                   }),
+                  rjTextBox("Senha", (value) {
+                    usuario.senha = value;
+                    return null;
+                  }),
                   rjTextBox("Telefone", (value) {
                     usuario.telefone = value;
                     return null;
                   }),
                   rjTextBox("Endereço", (value) {
                     usuario.endereco = value;
+                    return null;
+                  }),
+                  rjTextBox("Cep", (value) {
+                    usuario.cep = value;
                     return null;
                   }),
                   rjTextBox("Cidade", (value) {
@@ -77,8 +84,9 @@ class _CadastroUsuarioPageState extends State<CadastroUsuarioPage> {
                     child: ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          var usuario = Usuario();
-                          usuario.nome = "Nome";
+                          usuario.tipoUsuario = 'Cliente';
+                          usuario.status = 'Ativo';
+                          UsuarioBLL().SalvarUsuario(usuario);
                         }
                       },
                       child:

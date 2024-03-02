@@ -1,6 +1,5 @@
 class Usuario {
   late String nome;
-  late String login;
   late String senha;
   late String email;
   late String telefone;
@@ -9,11 +8,22 @@ class Usuario {
   late String estado;
   late String cep;
   late String bairro;
-  late String foto;
   late String tipoUsuario;
   late String status;
-  late DateTime dataNascimento;
-  late DateTime dataCadastro;
-  late DateTime dataAlteracao;
-  late DateTime dataExclusao;
+
+  toJson() {
+    return {
+      'nome': nome,
+      'senha': senha,
+      'email': email,
+      'telefone': telefone,
+      'endereco': endereco,
+      'cidade': cidade,
+      'estado': estado,
+      'cep': cep,
+      'bairro': bairro,
+      'tipo_usuario': tipoUsuario,
+      'status': status,
+    };
+  }
 }

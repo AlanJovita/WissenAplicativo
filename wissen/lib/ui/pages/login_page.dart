@@ -58,7 +58,7 @@ class _LoginPageState extends State<LoginPage> {
                         return null;
                       },
                       onSaved: (value) {
-                        usuario.login = value!;
+                        usuario.email = value!;
                       },
                     ),
                     const SizedBox(height: 10),
@@ -85,7 +85,7 @@ class _LoginPageState extends State<LoginPage> {
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             _formKey.currentState!.save(); // Save the form data
-                            _realizarLogin(usuario.login, usuario.senha);
+                            _realizarLogin(usuario.email, usuario.senha);
                           }
                         },
                         child: const Text('Entrar',

@@ -1,5 +1,7 @@
 import 'package:appwrite/appwrite.dart';
+import 'package:appwrite/models.dart';
 import 'package:wissen/server/constantes.dart';
+import 'package:wissen/server/models/usuario.dart';
 
 class UsuarioBLL {
   Future<bool> validarLogin(String login, String senha) async {
@@ -21,6 +23,23 @@ class UsuarioBLL {
       return true;
     } on Exception {
       return false;
+    }
+  }
+
+  void SalvarUsuario(Usuario usuario) async {
+    final client = Client().setEndpoint(urlEndpoint).setProject(projectId);
+    final databases = Databases(client);
+
+    try {
+      await databases.createDocument(
+        databaseId: databaseId,
+        collectionId: collectionIdUsuario,
+        data: usuario.toJson(),
+        documentId: ID.unique(),
+      );
+    } catch (e) {
+      // Handle any errors that occur during the save process
+      print('Error saving user: $e');
     }
   }
 }
